@@ -232,6 +232,82 @@ body {
   opacity: 0.8;
   margin-bottom: 10px;
 }
+    /* ===== MOBILE PERFECT FIX ===== */
+@media (max-width: 768px) {
+
+  /* HEADER FIX */
+  header .flex {
+    flex-direction: row !important;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  #tit {
+    font-size: 16px !important;
+    margin: 0 !important;
+  }
+
+  header a.btn {
+    padding: 6px 10px !important;
+    font-size: 12px !important;
+  }
+
+  /* GRID FIX */
+  #products {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+
+  /* CARD FIX */
+  .card {
+    min-height: 280px !important;
+    padding: 10px !important;
+  }
+
+  .card img {
+    height: 120px !important;
+  }
+
+  .card h3 {
+    font-size: 13px !important;
+  }
+
+  .card p {
+    font-size: 12px !important;
+  }
+
+  .card button {
+    font-size: 12px !important;
+    padding: 6px !important;
+  }
+
+  /* INPUTS */
+  .input {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  /* CART FULL SCREEN */
+  #cart {
+    width: 100vw !important;
+  }
+}
+
+/* EXTRA SMALL PHONES */
+@media (max-width: 480px) {
+
+  #products {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  .card {
+    min-height: 260px !important;
+  }
+
+  h1 {
+    font-size: 18px !important;
+  }
+}
   </style>
 </head>
 
