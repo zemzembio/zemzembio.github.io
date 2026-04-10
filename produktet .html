@@ -130,11 +130,7 @@
 
     /* PARALLAX */
 
-    body {
-      background: url("background.jpg") no-repeat center;
-      background-size: cover;
-      background-attachment: fixed;
-    }
+    
 
     /* overlay që ta bëjë më dark (super e rëndësishme) */
     body::before {
@@ -209,7 +205,29 @@ button, .btn {
   font-weight: 600;
   margin-bottom: 6px;
 }
+body {
+  background: none;
+  overflow-x: hidden;
+}
 
+/* universal background layer */
+.bg-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  object-fit: cover;
+}
+
+/* dark overlay uniform */
+.bg-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  z-index: -1;
+}
 .card p {
   opacity: 0.8;
   margin-bottom: 10px;
@@ -237,7 +255,13 @@ button, .btn {
           🛒 <span id="cart-count">0</span>
         </button>
       </div>
-  
+    <button onclick="toggleCart()" class="text-xl hover:scale-110 transition">
+  🛒 <span id="cart-count">0</span>
+</button>
+
+<button onclick="closeCart()" class="ml-2 text-sm bg-red-500/20 px-3 py-1 rounded hover:bg-red-500/40 transition">
+  ✕
+</button>
     </div>
   </header>
 
@@ -276,7 +300,8 @@ button, .btn {
       Bli Tani
     </button>
   </div>
-
+<img src="background.jpg" class="bg-layer">
+<div class="bg-overlay"></div>
   <script id="swipe-cart">
 
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
