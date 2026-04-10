@@ -18,18 +18,14 @@ body{
   overflow-x:hidden;
 }
 
-/* Tituj */
-#tit{ font-size: 35px; }
-h1,h2,h3{ font-family:Playfair Display; }
-
-/* Glass effect */
+/* ===== GLASS EFFECT ===== */
 .glass{
   background:rgba(255,255,255,0.05);
   backdrop-filter:blur(20px);
   border:1px solid rgba(255,255,255,0.08);
 }
 
-/* Buttons */
+/* ===== BUTTON ===== */
 .btn{
   background:linear-gradient(135deg,#8fbf9f,#a8d5b5);
   color:black;
@@ -40,37 +36,7 @@ h1,h2,h3{ font-family:Playfair Display; }
   box-shadow:0 0 40px rgba(143,191,159,0.7);
 }
 
-/* Fade animations */
-.fade{
-  opacity:0;
-  transform:translateY(80px);
-  transition:1s ease;
-}
-.fade.show{
-  opacity:1;
-  transform:translateY(0);
-}
-
-/* Fade left/right */
-.fade-left{
-  opacity:0;
-  transform:translateX(-100vw);
-  transition:1s ease;
-}
-.fade-left.show{ transform:translateX(0); opacity:1; }
-
-.fade-right{
-  opacity:0;
-  transform:translateX(100vw);
-  transition:1s ease;
-}
-.fade-right.show{ transform:translateX(0); opacity:1; }
-
-/* Glow + Float */
-.glow{
-  box-shadow:10px 10px 60px rgba(143,191,159,0.15);
-  border-radius: 100%;
-}
+/* ===== FLOAT ===== */
 .float{
   animation:float 5s ease-in-out infinite;
 }
@@ -80,17 +46,18 @@ h1,h2,h3{ font-family:Playfair Display; }
   100%{transform:translateY(0);}
 }
 
-/* Parallax background */
-#bg div{
-  animation:slowZoom 20s ease-in-out infinite;
+/* ===== FADE ===== */
+.fade{
+  opacity:0;
+  transform:translateY(60px);
+  transition:1s ease;
 }
-@keyframes slowZoom{
-  0%{transform:scale(1.1);}
-  50%{transform:scale(1.2);}
-  100%{transform:scale(1.1);}
+.fade.show{
+  opacity:1;
+  transform:translateY(0);
 }
 
-/* Hero Section Images - absolute skajet */
+/* ===== HERO DECOR IMAGES ===== */
 .left-img{
   position:absolute;
   top:25%;
@@ -106,70 +73,88 @@ h1,h2,h3{ font-family:Playfair Display; }
   z-index:5;
 }
 
-canvas{ pointer-events:none; }
-/* ===== UNIVERSAL RESPONSIVE FIX ===== */
-* {
-  box-sizing: border-box;
+/* ===== BACKGROUND FIX ===== */
+.bg-layer{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  z-index:-2;
 }
 
-html, body {
-  max-width: 100%;
-  overflow-x: hidden;
+.bg-overlay{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.6);
+  z-index:-1;
 }
 
-/* tekst scaling për mobile */
-body {
-  font-size: clamp(14px, 1.2vw, 16px);
+/* =========================================================
+   🔥 ONLY FIXES (NUK PREKIN STRUKTURËN TËNDE)
+========================================================= */
+
+/* prevent weird horizontal scroll on all devices */
+html, body{
+  max-width:100%;
+  overflow-x:hidden;
 }
 
-/* images safe */
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
+/* make hero safe on small screens */
+@media (max-width:1024px){
 
-/* containers */
-.max-w-7xl, .max-w-6xl, .max-w-5xl {
-  width: 100%;
-  padding-left: 16px;
-  padding-right: 16px;
-}
-
-/* buttons safe */
-button, .btn {
-  cursor: pointer;
-  white-space: nowrap;
-}
-
-/* grid fallback */
-.grid {
-  display: grid;
-  gap: 16px;
-}
-
-/* mobile tweak */
-@media (max-width: 768px) {
-  h1 { font-size: 22px !important; }
-  h2 { font-size: 20px !important; }
-
-  #tit {
-    margin-right: 0 !important;
-    text-align: center;
-  }
-
-  header .flex {
-    flex-direction: column;
-    gap: 10px;
+  .left-img img,
+  .right-img img{
+    width:220px !important;
+    height:auto;
   }
 }
-@media (max-width: 768px) {
-  .left-img, .right-img {
-    display: none;
+
+/* tablet + mobile tuning */
+@media (max-width:768px){
+
+  #tit{
+    font-size:22px !important;
+    margin-right:0 !important;
+    text-align:center;
   }
 
-  .fade h1 {
-    font-size: 28px !important;
+  .left-img img,
+  .right-img img{
+    width:140px !important;
+  }
+
+  .left-img{
+    left:-10px;
+    top:40%;
+  }
+
+  .right-img{
+    right:-10px;
+    top:40%;
+  }
+
+  .btn{
+    padding:12px 24px;
+  }
+}
+
+/* small phones */
+@media (max-width:480px){
+
+  /* keep layout clean */
+  .left-img,
+  .right-img{
+    opacity:0.8;
+  }
+
+  h1{
+    font-size:32px !important;
   }
 }
 </style>
@@ -253,15 +238,7 @@ button, .btn {
   <a href="produktet .html" class="btn px-12 py-5 rounded-full text-lg">Porosit Tani</a>
 </section>
 
-<!-- CART -->
-<div id="cart" class="fixed right-0 top-0 w-80 h-full glass p-5 transform translate-x-full transition duration-500">
-  <h2 class="text-xl mb-4">Shporta</h2>
-  <div id="cart-items"></div>
-  <p class="mt-4 font-bold">Totali: €<span id="total">0</span></p>
-  <input id="name" placeholder="Emri" class="w-full bg-black border p-2 mt-3 rounded">
-  <input id="phone" placeholder="Numri" class="w-full bg-black border p-2 mt-2 rounded">
-  <button onclick="sendOrder()" class="btn w-full mt-4 py-3 rounded">Porosit</button>
-</div>
+
 
 <script>
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
