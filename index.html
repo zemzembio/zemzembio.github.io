@@ -184,7 +184,7 @@ html, body{
 <section class="relative h-screen flex items-center justify-center text-center overflow-hidden">
 
   <!-- VIDEO BACKGROUND -->
-  <img src="background.jpg" class="bg-layer">
+  
 <div class="bg-overlay"></div>
 
   <div class="absolute inset-0 bg-black/70"></div>
@@ -241,72 +241,15 @@ html, body{
 
 
 <script>
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-function toggleCart(){ document.getElementById("cart").classList.toggle("translate-x-full"); }
-function addToCart(name,price){ cart.push({name,price}); localStorage.setItem("cart",JSON.stringify(cart)); updateCart(); }
-function updateCart(){
-  let items = document.getElementById("cart-items"); items.innerHTML=""; let total=0;
-  cart.forEach(i=>{ total+=i.price; items.innerHTML+=`<p>${i.name} - €${i.price}</p>`; });
-  document.getElementById("total").innerText=total;
-  document.getElementById("cart-count").innerText=cart.length;
-}
-function sendOrder(){
-  let name=document.getElementById("name").value;
-  let phone=document.getElementById("phone").value;
-  let msg="Porosi:%0A";
-  cart.forEach(i=>{ msg+=`${i.name} - €${i.price}%0A`; });
-  msg+=`Total: €${document.getElementById("total").innerText}%0A`;
-  msg+=`Emri: ${name}%0ANumri: ${phone}`;
-  window.open(`https://wa.me/38345817901?text=${msg}`);
-}
-updateCart();
-
-// Scroll reveal
-const faders = document.querySelectorAll(".fade");
-const fadersLeft = document.querySelectorAll(".fade-left");
-const fadersRight = document.querySelectorAll(".fade-right");
-
-window.addEventListener("scroll", ()=>{
-  faders.forEach(el=>{ if(el.getBoundingClientRect().top < window.innerHeight-100) el.classList.add("show"); });
-  fadersLeft.forEach(el=>{ if(el.getBoundingClientRect().top < window.innerHeight-100) el.classList.add("show"); });
-  fadersRight.forEach(el=>{ if(el.getBoundingClientRect().top < window.innerHeight-100) el.classList.add("show"); });
-});
-
-// Mouse parallax
-const bg = document.getElementById("bg");
-document.addEventListener("mousemove", e=>{
-  let x = (e.clientX/window.innerWidth-0.5)*30;
-  let y = (e.clientY/window.innerHeight-0.5)*30;
-  bg.style.transform=`translate(${x}px,${y}px)`;
-});
-
-// Glow follow
-const glow = document.getElementById("glow");
-document.addEventListener("mousemove", e=>{
-  glow.style.left = e.clientX-150 + "px";
-  glow.style.top = e.clientY-150 + "px";
-});
-
-// Particles
-const canvas = document.getElementById("particles");
-const ctx = canvas.getContext("2d");
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-let particles=[];
-for(let i=0;i<60;i++){ particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*2,d:Math.random()*1}); }
-function draw(){ ctx.clearRect(0,0,canvas.width,canvas.height); ctx.fillStyle="rgba(143,191,159,0.3)";
-  particles.forEach(p=>{
-    ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill();
-    p.y+=p.d;
-    if(p.y>canvas.height){ p.y=0; p.x=Math.random()*canvas.width; }
+// scroll animation
+const faders=document.querySelectorAll(".fade");
+window.addEventListener("scroll",()=>{
+  faders.forEach(el=>{
+    if(el.getBoundingClientRect().top<window.innerHeight-100){
+      el.classList.add("show");
+    }
   });
-  requestAnimationFrame(draw);
-}
-draw();
-
-// Resize fix
-window.addEventListener("resize", ()=>{ canvas.width=window.innerWidth; canvas.height=window.innerHeight; });
+});
 </script>
 
 </body>
