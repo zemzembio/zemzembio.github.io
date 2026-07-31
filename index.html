@@ -39,16 +39,6 @@ body{
   50%{transform:translateY(-15px);}
 }
 
-.fade{
-  opacity:0;
-  transform:translateY(40px);
-  transition:1s;
-}
-.fade.show{
-  opacity:1;
-  transform:translateY(0);
-}
-
 /* FIX IMAGES */
 .side-img{
   position:absolute;
@@ -62,7 +52,7 @@ body{
 /* MOBILE FIX */
 @media (max-width:768px){
   .side-img{
-    display:none; /* hide on mobile = clean layout */
+    display:none;
   }
 }
 </style>
@@ -76,13 +66,14 @@ body{
 <header class="fixed w-full z-50 glass">
   <div class="max-w-7xl mx-auto flex justify-between items-center px-4 py-3">
 
-    <img src="logo2.png" class="w-12 md:w-16 float" style="border-radius: 100%;">
+    <img src="logo2.png" class="w-12 md:w-16 float" style="border-radius:100%;">
 
     <h1 class="text-lg md:text-2xl text-center flex-1">
       Zem Zem Bio Produkt
     </h1>
 
-    <div class="w-12"></div> <!-- spacing fix -->
+    <div class="w-12"></div>
+
   </div>
 </header>
 
@@ -91,16 +82,16 @@ body{
 
   <!-- LEFT -->
   <div class="side-img left-img">
-    <img src="milk.png" class="w-40 md:w-[400px]" style="border-radius: 75px;">
+    <img src="milk.png" class="w-40 md:w-[400px]" style="border-radius:75px;">
   </div>
 
   <!-- RIGHT -->
   <div class="side-img right-img">
-    <img src="dates.png" class="w-40 md:w-[400px]" style="border-radius: 75px;">
+    <img src="dates.png" class="w-40 md:w-[400px]" style="border-radius:75px;">
   </div>
 
   <!-- CENTER -->
-  <div class="relative z-10 fade">
+  <div class="relative z-10">
     <img src="logo2.png" class="w-28 md:w-40 mx-auto mb-6 float">
 
     <h1 class="text-3xl md:text-6xl mb-6">
@@ -122,12 +113,16 @@ body{
 <section class="py-20 md:py-32 text-center relative overflow-hidden">
 
   <div class="absolute inset-0 bg-cover bg-center"
-       style="background-image:url('background.png');"></div>
+       style="background-image:url('background.png');">
+  </div>
 
   <div class="absolute inset-0 bg-black/60"></div>
 
-  <div class="relative z-10 fade px-4">
-    <h2 class="text-3xl md:text-5xl mb-6">Cilësi që ndjehet</h2>
+  <div class="relative z-10 px-4">
+    <h2 class="text-3xl md:text-5xl mb-6">
+      Cilësi që ndjehet
+    </h2>
+
     <p class="max-w-xl mx-auto text-gray-300 text-sm md:text-base">
       Çdo produkt është zgjedhur me kujdes për të ofruar përvojë premium dhe natyrale.
     </p>
@@ -136,34 +131,29 @@ body{
 </section>
 
 <!-- CTA -->
-<section class="py-20 md:py-32 text-center fade px-4">
-  <h2 class="text-3xl md:text-5xl mb-6">Gati për të jetuar më mirë?</h2>
+<section class="py-20 md:py-32 text-center px-4">
+
+  <h2 class="text-3xl md:text-5xl mb-6">
+    Gati për të jetuar më mirë?
+  </h2>
+
   <a href="produktet.html" class="btn px-8 md:px-12 py-4 rounded-full text-base md:text-lg">
     Porosit Tani
   </a>
+
 </section>
+
+<!-- MAP -->
 <div class="w-full h-[400px] rounded-2xl overflow-hidden shadow-lg">
-  <iframe 
+  <iframe
     src="https://www.google.com/maps?q=ZemZem%20BioProdukt&output=embed"
-    width="100%" 
-    height="100%" 
-    style="border:0;" 
-    allowfullscreen="" 
+    width="100%"
+    height="100%"
+    style="border:0;"
+    allowfullscreen
     loading="lazy">
   </iframe>
 </div>
-
-<script>
-const faders=document.querySelectorAll(".fade");
-
-window.addEventListener("scroll",()=>{
-  faders.forEach(el=>{
-    if(el.getBoundingClientRect().top<window.innerHeight-100){
-      el.classList.add("show");
-    }
-  });
-});
-</script>
 
 </body>
 </html>
